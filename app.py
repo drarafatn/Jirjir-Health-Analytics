@@ -34,11 +34,13 @@ c3.metric("Female", "242")
 c4.metric("Under 5", "240")
 
 fig1 = px.bar(df, x='Disease', y='Total', color='Age', barmode='group', title='Disease by Age Group')
+fig1.update_layout(xaxis=dict(tickangle=-45))
 st.plotly_chart(fig1, use_container_width=True)
 
 gender_df = df.melt(id_vars=['Disease', 'Age'], value_vars=['Male', 'Female'], var_name='Gender', value_name='Count')
 fig2 = px.bar(gender_df, x='Disease', y='Count', color='Gender', facet_col='Age', title='Gender Analysis')
+fig2.update_layout(xaxis=dict(tickangle=-45), xaxis2=dict(tickangle=-45))
 st.plotly_chart(fig2, use_container_width=True)
 
-st.dataframe(df, use_container_width=True)
+st.dataframe(df, use_container_width=True, hide_index=True)
 st.caption("Data: Jirjir Health Centre OPD Register")
